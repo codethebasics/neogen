@@ -95,7 +95,7 @@ app.get("/auth/logout", (req, res) => {
   return res.redirect(302, "/");
 });
 
-app.get("/api/@me", checkUser, async (req, res) => {
+app.get("/api/me", checkUser, async (req, res) => {
   let { hf_token } = req.cookies;
 
   if (process.env.HF_TOKEN && process.env.HF_TOKEN !== "") {

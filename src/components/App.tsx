@@ -40,7 +40,7 @@ function App() {
   const [prompts, setPrompts] = useState<string[]>([]);
 
   const fetchMe = async () => {
-    const res = await fetch("/api/@me");
+    const res = await fetch("/api/me");
     if (res.ok) {
       const data = await res.json();
       setAuth(data);
