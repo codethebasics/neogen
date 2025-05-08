@@ -13,6 +13,7 @@ export const defaultHTML = `<!DOCTYPE html>
         height: 100dvh;
         font-family: "Arial", sans-serif;
         text-align: center;
+        background-color: transparent;
       }
       .arrow {
         position: absolute;
@@ -32,8 +33,8 @@ export const defaultHTML = `<!DOCTYPE html>
   </head>
   <body>
     <h1>
-      <span>I'm ready to work,</span><br />
-      Ask me anything.
+      <span>Vamos gerar o seu</span><br />
+      Site dos sonhos!
     </h1>
     <img src="https://enzostvs-deepsite.hf.space/arrow.svg" class="arrow" />
     <script></script>

@@ -164,7 +164,7 @@ function AskAI({
           disabled={isAiWorking}
           className="w-full bg-transparent max-lg:text-sm outline-none px-3 text-white placeholder:text-gray-500 font-code"
           placeholder={
-            hasAsked ? "What do you want to ask AI next?" : "Ask AI anything..."
+            hasAsked ? "O que mais deseja?" : "Descreva o seu site dos sonhos..."
           }
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
@@ -185,7 +185,7 @@ function AskAI({
           />
           <button
             disabled={isAiWorking}
-            className="relative overflow-hidden cursor-pointer flex-none flex items-center justify-center rounded-full text-sm font-semibold size-8 text-center bg-pink-500 hover:bg-pink-400 text-white shadow-sm dark:shadow-highlight/20 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
+            className="relative overflow-hidden cursor-pointer flex-none flex items-center justify-center rounded-full text-sm font-semibold size-8 text-center bg-violet-600 hover:bg-violet-400 text-white shadow-sm dark:shadow-highlight/20 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
             onClick={callAi}
           >
             <GrSend className="-translate-x-[1px]" />

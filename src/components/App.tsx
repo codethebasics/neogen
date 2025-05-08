@@ -1,25 +1,26 @@
-import { useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import Editor from "@monaco-editor/react";
 import classNames from "classnames";
-import { editor } from "monaco-editor";
-import {
-  useMount,
-  useUnmount,
-  useEvent,
-  useLocalStorage,
-  useSearchParam,
-} from "react-use";
-import { toast } from "react-toastify";
+import {editor} from "monaco-editor";
+import {useEvent, useLocalStorage, useMount, useSearchParam, useUnmount,} from "react-use";
+import {toast} from "react-toastify";
 
 import Header from "./header/header";
 import DeployButton from "./deploy-button/deploy-button";
-import { defaultHTML } from "./../../utils/consts";
+import {defaultHTML} from "./../../utils/consts";
 import Tabs from "./tabs/tabs";
 import AskAI from "./ask-ai/ask-ai";
-import { Auth } from "./../../utils/types";
+import {Auth} from "./../../utils/types";
 import Preview from "./preview/preview";
 
 function App() {
+  useEffect(() => {
+    document.body.classList.add('holographic-bg');
+    return () => {
+      document.body.classList.remove('holographic-bg');
+    };
+  }, [])
+
   const [htmlStorage, , removeHtmlStorage] = useLocalStorage("html_content");
   const remix = useSearchParam("remix");
 

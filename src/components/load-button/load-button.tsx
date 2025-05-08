@@ -54,12 +54,6 @@ function LoadButton({
         "border-r border-gray-700 pr-5": auth,
       })}
     >
-      <p
-        className="underline hover:text-white cursor-pointer text-xs lg:text-sm text-gray-300"
-        onClick={() => setOpen(!open)}
-      >
-        Load Space
-      </p>
       <div
         className={classNames(
           "h-screen w-screen bg-black/20 fixed left-0 top-0 z-10",

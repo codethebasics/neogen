@@ -121,15 +121,15 @@ function DeployButton({
           ))}
         <button
           className={classNames(
-            "relative cursor-pointer flex-none flex items-center justify-center rounded-md text-xs lg:text-sm font-semibold leading-5 lg:leading-6 py-1.5 px-5 hover:bg-pink-400 text-white shadow-sm dark:shadow-highlight/20",
-            {
-              "bg-pink-400": open,
-              "bg-pink-500": !open,
-            }
+            "relative cursor-pointer flex-none flex items-center justify-center rounded-md text-xs lg:text-sm font-semibold leading-5 lg:leading-6 py-1.5 px-5 hover:bg-violet-400 text-white shadow-sm dark:shadow-highlight/20",
+              {
+                "bg-cyan-400": open,
+                "bg-violet-600": !open,
+              }
           )}
           onClick={() => setOpen(!open)}
         >
-          {path ? "Update Space" : "Deploy to Space"}
+          {path ? "Atualizar site" : "Enviar site"}
         </button>
         <div
           className={classNames(
