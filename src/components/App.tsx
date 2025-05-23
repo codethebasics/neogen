@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import {useRef, useState} from "react";
 import Editor from "@monaco-editor/react";
 import classNames from "classnames";
 import {editor} from "monaco-editor";
@@ -14,12 +14,6 @@ import {Auth} from "./../../utils/types";
 import Preview from "./preview/preview";
 
 function App() {
-  useEffect(() => {
-    document.body.classList.add('holographic-bg');
-    return () => {
-      document.body.classList.remove('holographic-bg');
-    };
-  }, [])
 
   const [htmlStorage, , removeHtmlStorage] = useLocalStorage("html_content");
   const remix = useSearchParam("remix");
