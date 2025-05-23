@@ -1,21 +1,16 @@
 import express from "express";
 import path from "path";
-import { fileURLToPath } from "url";
+import {fileURLToPath} from "url";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import {
-  createRepo,
-  uploadFiles,
-  whoAmI,
-  spaceInfo,
-  fileExists,
-} from "@huggingface/hub";
-import { InferenceClient } from "@huggingface/inference";
+import {createRepo, spaceInfo, uploadFiles, whoAmI,} from "@huggingface/hub";
+import {InferenceClient} from "@huggingface/inference";
 import bodyParser from "body-parser";
 
 import checkUser from "./middlewares/checkUser.js";
-import { PROVIDERS } from "./utils/providers.js";
-import { COLORS } from "./utils/colors.js";
+import {PROVIDERS} from "./utils/providers.js";
+import {COLORS} from "./utils/colors.js";
+import * as fs from "node:fs";
 
 // Load environment variables from .env file
 dotenv.config();
