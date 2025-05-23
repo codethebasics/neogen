@@ -434,6 +434,41 @@ app.get("*", (_req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
+/**
+ * Endpoint que processa pagamento efetuado com sucesso
+ */
+app.post('/api/paid', (req, res) => {
+  const { external_reference, paid_at, status } = req.body;
+
+  console.log('🔔 Webhook recebido');
+  console.log(req.body);
+
+  const dir = '/home/ec2-user/greenn-webhooks';
+  const filename = `${external_reference || 'sem_ref'}-${Date.now()}.json`;
+  const filepath = path.join(dir, filename);
+
+  // garante que o diretório existe
+  fs.mkdirSync(dir, { recursive: true });
+
+  const data = {
+    external_reference,
+    paid_at,
+    status,
+    full_payload: req.body,
+    received_at: new Date().toISOString()
+  };
+
+  fs.writeFile(filepath, JSON.stringify(data, null, 2), (err) => {
+    if (err) {
+      console.error('❌ Erro ao gravar arquivo:', err);
+      return res.status(500).json({ error: 'Erro ao gravar arquivo' });
+    }
+    console.log(`✅ Webhook salvo em: ${filepath}`);
+    res.status(200).json({ message: 'Recebido com sucesso' });
+  });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
