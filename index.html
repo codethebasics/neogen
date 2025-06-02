@@ -53,6 +53,131 @@
                 }
             });
         }
+
+        // Initialize color pickers with smaller size
+        const colorPickerPrimary = new iro.ColorPicker("#color-picker-primary", {
+            width: 150,
+            color: "#00f0ff",
+            borderWidth: 1,
+            borderColor: "#333",
+            layout: [
+                {
+                    component: iro.ui.Wheel,
+                    options: {
+                        wheelLightness: false,
+                        wheelAngle: 0,
+                        wheelDirection: 'anticlockwise'
+                    }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: {}
+                }
+            ]
+        });
+
+
+        const colorPickerSecondary = new iro.ColorPicker("#color-picker-secondary", {
+            width: 150,
+            color: "#9600ff",
+            borderWidth: 1,
+            borderColor: "#333",
+            layout: [
+                {
+                    component: iro.ui.Wheel,
+                    options: {
+                        wheelLightness: false,
+                        wheelAngle: 0,
+                        wheelDirection: 'anticlockwise'
+                    }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: {}
+                }
+            ]
+        });
+
+
+        const colorPickerAccent = new iro.ColorPicker("#color-picker-accent", {
+            width: 150,
+            color: "#ff00e6",
+            borderWidth: 1,
+            borderColor: "#333",
+            layout: [
+                {
+                    component: iro.ui.Wheel,
+                    options: {
+                        wheelLightness: false,
+                        wheelAngle: 0,
+                        wheelDirection: 'anticlockwise'
+                    }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: {}
+                }
+            ]
+        });
+
+
+        // Function to update command input with color information
+        function updateCommandWithColors() {
+            const commandInput = document.getElementById('command-input');
+            let currentText = commandInput.value.trim();
+            const styles = ['estilo de site futurista', 'estilo de site moderno', 'estilo de site minimalista', 'efeito partículas', 'efeito holográfico', 'efeito 3D'];
+            let currentStyle = styles.find(style => currentText.includes(style));
+            currentText = currentText.replace(/Cores selecionadas:.*?(?=\n|$)/g, '').trim();
+
+            const primaryColor = colorPickerPrimary.color.hexString;
+            const secondaryColor = colorPickerSecondary.color.hexString;
+            const accentColor = colorPickerAccent.color.hexString;
+
+            const colorInfo = `Cores selecionadas: Primária ${primaryColor}, Secundária ${secondaryColor}, Destaque ${accentColor}`;
+
+            if (!currentStyle) {
+                currentStyle = '';
+            }
+
+            commandInput.value = `${currentStyle} ${currentText.replace(currentStyle, '').trim()}\n${colorInfo}`.trim();
+        }
+
+
+        // Add event listeners to color pickers
+        colorPickerPrimary.on('color:change', function (color) {
+            updateCommandWithColors();
+        });
+
+
+        colorPickerSecondary.on('color:change', function (color) {
+            updateCommandWithColors();
+        });
+
+
+        colorPickerAccent.on('color:change', function (color) {
+            updateCommandWithColors();
+        });
+
+
+        // Show status message
+        function showStatusMessage(message, type) {
+            const statusElement = document.getElementById('status-message');
+            statusElement.textContent = message;
+            statusElement.className = 'status-message';
+
+            if (type === 'success') {
+                statusElement.classList.add('status-success');
+            } else if (type === 'error') {
+                statusElement.classList.add('status-error');
+            }
+
+            statusElement.style.display = 'block';
+
+            // Hide after 5 seconds
+            setTimeout(() => {
+                statusElement.style.display = 'none';
+            }, 5000);
+        }
     })
 </script>
 </body>

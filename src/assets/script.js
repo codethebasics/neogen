@@ -147,4 +147,4 @@ document.addEventListener('DOMContentLoaded', function () {
             editLayoutBtn.textContent = 'Editar Layout';
         }
     });
-});s
+});

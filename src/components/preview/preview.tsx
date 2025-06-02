@@ -20,7 +20,7 @@ function Preview({
     <div
       ref={ref}
       className="border-l border-gray-900 bg-white"
-      style={{"height": "100%"}}
+      style={{"height": "100%", "flex": 1}}
       onClick={(e) => {
         if (isAiWorking) {
           e.preventDefault();
