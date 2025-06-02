@@ -150,7 +150,7 @@ function AskAI({
     >
       {defaultHTML !== html && (
         <button
-          className="bg-white lg:hidden -translate-y-[calc(100%+8px)] absolute left-0 top-0 shadow-md text-gray-950 text-xs font-medium py-2 px-3 lg:px-4 rounded-lg flex items-center gap-2 border border-gray-100 hover:brightness-150 transition-all duration-100 cursor-pointer"
+          className="bg-white -translate-y-[calc(100%+8px)] absolute left-0 top-0 shadow-md text-gray-950 text-xs font-medium py-2 px-3 lg:px-4 rounded-lg flex items-center gap-2 border border-gray-100 hover:brightness-150 transition-all duration-100 cursor-pointer"
           onClick={() => setView("preview")}
         >
           <MdPreview className="text-sm" />
@@ -176,16 +176,18 @@ function AskAI({
         />
         <div className="flex items-center justify-end gap-2">
           {/* <SpeechPrompt setPrompt={setPrompt} /> */}
-          <Settings
-            provider={provider as string}
-            onChange={setProvider}
-            open={openProvider}
-            error={providerError}
-            onClose={setOpenProvider}
-          />
+          <div style={{"display": "none"}}>
+            <Settings
+              provider={provider as string}
+              onChange={setProvider}
+              open={openProvider}
+              error={providerError}
+              onClose={setOpenProvider}
+            />
+          </div>
           <button
             disabled={isAiWorking}
-            className="relative overflow-hidden cursor-pointer flex-none flex items-center justify-center rounded-full text-sm font-semibold size-8 text-center bg-violet-600 hover:bg-violet-400 text-white shadow-sm dark:shadow-highlight/20 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
+            className="relative cursor-pointer flex-none flex items-center justify-center rounded-full text-sm font-semibold size-8 text-center bg-violet-600 hover:bg-violet-400 text-white shadow-sm dark:shadow-highlight/20 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
             onClick={callAi}
           >
             <GrSend className="-translate-x-[1px]" />

@@ -2,7 +2,7 @@ import Deepseek from "./../../assets/deepseek-color.svg";
 
 function Tabs({ children }: { children?: React.ReactNode }) {
   return (
-    <div className="border-b border-gray-800 pl-4 lg:pl-7 pr-3 flex items-center justify-between">
+    <div style={{"display": "none"}} className="border-b border-gray-800 pl-4 lg:pl-7 pr-3 flex items-center justify-between">
       <div
         className="
       space-x-6"
