@@ -6,6 +6,7 @@ import {defaultHTML} from "./../../utils/consts";
 import AskAI from "./ask-ai/ask-ai";
 import {Auth} from "./../../utils/types";
 import Preview from "./preview/preview";
+import logo from "../assets/zeyra-icon.svg";
 
 function App() {
 
@@ -164,7 +165,9 @@ function App() {
                             <div className="relative">
                                 <div
                                     className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center glow-effect">
-                                    <i className="fas fa-robot text-lg text-white"></i>
+                                    <div>
+                                        <img src={logo} alt={"Logo"} style={{"objectFit": "contain"}} />
+                                    </div>
                                 </div>
                                 <div
                                     className="absolute -bottom-1 -right-1 w-3 h-3 bg-accent rounded-full pulse-animation"></div>
@@ -366,9 +369,25 @@ function App() {
                                             Comando de Geração
                                         </h3>
 
-                                        <textarea id="command-input" rows={5}
-                                                  placeholder="Descreva o site que deseja criar...\nEx: Landing page futurista para app de realidade aumentada com cores roxo e azul, animações 3D e formulário de contato..."
-                                                  className="w-full px-4 py-3 cyber-input rounded-lg bg-gray-900 focus:ring-2 focus:ring-primary outline-none transition"></textarea>
+                                        {/*<textarea id="command-input" rows={5}*/}
+                                        {/*          placeholder="Descreva o site que deseja criar... Exemplo: Landing page futurista para app de realidade aumentada com cores roxo e azul, animações 3D e formulário de contato..."*/}
+                                        {/*          className="w-full px-4 py-3 cyber-input rounded-lg bg-gray-900 focus:ring-2 focus:ring-primary outline-none transition"></textarea>*/}
+
+                                        <AskAI
+                                            html={html}
+                                            setHtml={setHtml}
+                                            isAiWorking={isAiWorking}
+                                            setisAiWorking={setisAiWorking}
+                                            setView={setCurrentView}
+                                            onNewPrompt={(prompt) => {
+                                                setPrompts((prev) => [...prev, prompt]);
+                                            }}
+                                            onScrollToBottom={() => {
+                                                editorRef.current?.revealLine(
+                                                    editorRef.current?.getModel()?.getLineCount() ?? 0
+                                                );
+                                            }}
+                                        />
 
                                         <div className="flex justify-between items-center mt-2">
                                             <div className="text-xs text-gray-400">
@@ -380,10 +399,6 @@ function App() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     </div>
                                     <div className="flex flex-wrap gap-3">
-                                        <button id="generate-btn"
-                                                className="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-medium hover:opacity-90 transition flex items-center neon-btn glow-effect">
-                                            <i className="fas fa-bolt mr-2"></i> Gerar Site
-                                        </button>
                                         <button id="optimize-btn"
                                                 className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-lg font-medium transition flex items-center neon-btn">
                                             <i className="fas fa-magic mr-2"></i> Otimizar
@@ -405,7 +420,7 @@ function App() {
                     {/* ============= */}
                     {/* Preview panel */}
                     {/* ============= */}
-                    <div className="cyber-panel rounded-xl overflow-hidden">
+                    <div className="cyber-panel rounded-xl overflow-hidden" id="preview">
                         <div className="flex justify-between items-center p-4 border-b border-gray-800">
                             <h3 className="text-lg font-bold font-futuristic flex items-center">
                                 <i className="fas fa-eye mr-2 text-accent"></i>
@@ -488,59 +503,6 @@ function App() {
                             editá-lo diretamente.
                         </div>
                     </div>
-                </div>
-                {/*<div*/}
-                {/*    onClick={(e) => {*/}
-                {/*      if (isAiWorking) {*/}
-                {/*        e.preventDefault();*/}
-                {/*        e.stopPropagation();*/}
-                {/*        toast.warn("Please wait for the AI to finish working.");*/}
-                {/*      }*/}
-                {/*    }}*/}
-                {/*    style={{"display": "none"}}*/}
-                {/*>*/}
-                {/*  <Editor*/}
-                {/*      language="html"*/}
-                {/*      theme="vs-dark"*/}
-                {/*      value={html}*/}
-                {/*      onValidate={(markers) => {*/}
-                {/*        if (markers?.length > 0) {*/}
-                {/*          setError(true);*/}
-                {/*        }*/}
-                {/*      }}*/}
-                {/*      onChange={(value) => {*/}
-                {/*        const newValue = value ?? "";*/}
-                {/*        setHtml(newValue);*/}
-                {/*        setError(false);*/}
-                {/*      }}*/}
-                {/*      onMount={(editor) => (editorRef.current = editor)}*/}
-                {/*  />*/}
-                {/*</div>*/}
-                {/*<div style={{"height": "100%"}}>*/}
-                {/*  <Preview*/}
-                {/*      html={html}*/}
-                {/*      isResizing={isResizing}*/}
-                {/*      isAiWorking={isAiWorking}*/}
-                {/*      ref={preview}*/}
-                {/*      setView={setCurrentView}*/}
-                {/*  />*/}
-                {/*</div>*/}
-                <div>
-                  <AskAI
-                      html={html}
-                      setHtml={setHtml}
-                      isAiWorking={isAiWorking}
-                      setisAiWorking={setisAiWorking}
-                      setView={setCurrentView}
-                      onNewPrompt={(prompt) => {
-                        setPrompts((prev) => [...prev, prompt]);
-                      }}
-                      onScrollToBottom={() => {
-                        editorRef.current?.revealLine(
-                            editorRef.current?.getModel()?.getLineCount() ?? 0
-                        );
-                      }}
-                  />
                 </div>
             </div>
             {/* ====== */}

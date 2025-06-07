@@ -25,7 +25,7 @@ function Preview({
         if (isAiWorking) {
           e.preventDefault();
           e.stopPropagation();
-          toast.warn("Please wait for the AI to finish working.");
+          toast.warn("Por favor, espere a IA terminar o trabalho.");
         }
       }}
     >
