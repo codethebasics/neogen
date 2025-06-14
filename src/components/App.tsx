@@ -6,7 +6,7 @@ import {defaultHTML} from "./../../utils/consts";
 import AskAI from "./ask-ai/ask-ai";
 import {Auth} from "./../../utils/types";
 import Preview from "./preview/preview";
-import logo from "../assets/zeyra-icon.svg";
+import logo from "../assets/zeyra-circle.png";
 
 function App() {
 
